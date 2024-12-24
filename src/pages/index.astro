@@ -1,22 +1,58 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import RenderHtml from '../components/RenderHtml.astro';
 
-const posts = await Astro.glob('../posts/*.md');
+interface Post {
+  frontmatter: {
+    title: string;
+    date: string;
+  };
+  compiledContent: () => Promise<string>;
+}
+
+const postPromises = import.meta.glob('../posts/*.md');
+const posts = await Promise.all(
+  Object.values(postPromises).map(async (postPromise): Promise<Post> => {
+    const post: unknown = await postPromise();
+    if (isPost(post)) {
+      return {
+        ...post,
+        compiledContent: post.compiledContent,
+      };
+    }
+    throw new Error('Post is not of type Post');
+  })
+);
+
+function isPost(post: unknown): post is Post {
+  return (
+    post !== null &&
+    typeof post === 'object' &&
+    'frontmatter' in post &&
+    typeof post.frontmatter === 'object' &&
+    post.frontmatter !== null &&
+    'title' in post.frontmatter &&
+    typeof post.frontmatter.title === 'string' &&
+    'date' in post.frontmatter &&
+    typeof post.frontmatter.date === 'string' &&
+    'compiledContent' in post &&
+    typeof post.compiledContent === 'function'
+  );
+}
+
 // sort posts by date
-posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+posts.sort((a: Post, b: Post) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
-	{posts.map(async (post) => (
+	{posts.map((post: Post) => (
 		<div>
 			<h2>{post.frontmatter.title}</h2>
 			<p>{post.frontmatter.date}</p>
-			{await post.compiledContent()}
+      <RenderHtml html={post.compiledContent()}/>
 		</div>
 	))}
 </Layout>
