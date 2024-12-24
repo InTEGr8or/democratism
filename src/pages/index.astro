@@ -2,10 +2,23 @@
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
+const posts = await Astro.glob('../posts/*.md');
+// sort posts by date
+posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
 	<Welcome />
+	{posts.map(async (post) => (
+		<div>
+			<h2>{post.frontmatter.title}</h2>
+			<p>{post.frontmatter.date}</p>
+			{await post.compiledContent()}
+		</div>
+	))}
 </Layout>
+
+</final_file_content>
