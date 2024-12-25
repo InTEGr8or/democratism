@@ -22,38 +22,38 @@
     >
   </div>
   <script>
-    let tag = "form#signup", uriu = "https://z2z4aaf77ua232x5h5iad6f7gq0lnrwf.lambda-url.us-east-1.on.aws";
+    const tag = "form#signup", uriu = "https://z2z4aaf77ua232x5h5iad6f7gq0lnrwf.lambda-url.us-east-1.on.aws";
 
     const form = document.querySelector(tag) as HTMLFormElement;
     if (form) {
-      form.onsubmit = async (e: SubmitEvent) => {
-        if (e.target instanceof HTMLFormElement) {
-          if (e.submitter) {
-            (e.submitter.textContent = "Submitting");
-            (e.submitter as HTMLButtonElement).disabled = true;
+      form.onsubmit = async (event: SubmitEvent) => {
+        if (event.target instanceof HTMLFormElement) {
+          if (event.submitter) {
+            (event.submitter.textContent = "Submitting");
+            (event.submitter as HTMLButtonElement).disabled = true;
           }
-          const emailInput = e.target.querySelector('[name="email"]') as HTMLInputElement | null;
+          const emailInput = event.target.querySelector('[name="email"]') as HTMLInputElement | null;
           if (emailInput) {
             emailInput.disabled = true;
           }
-          e.preventDefault();
+          event.preventDefault();
           try {
-            const n = e.target;
-            const o: { [key: string]: string } = {};
-            for (let t = 0; t < n.length - 1; t++) {
-              const element = n[t] as HTMLInputElement;
+            const formElement = event.target;
+            const formData: { [key: string]: string } = {site:"democratism.info"};
+            for (let formItem = 0; formItem < formElement.length - 1; formItem++) {
+              const element = formElement[formItem] as HTMLInputElement;
               if (element.value) {
-                o[element.name] = element.value;
+                formData[element.name] = element.value;
               }
             }
-            let i = JSON.stringify(o);
-            console.log(i);
-            const s = await fetch(uriu, { method: "POST", body: i });
+            let formDataString = JSON.stringify(formData);
+            console.log(formDataString);
+            const s = await fetch(uriu, { method: "POST", body: formDataString });
             if (!s.ok) return Promise.reject(s);
             const a = await s.json();
             return (
-              e.submitter && (e.submitter.style.backgroundColor = "#FAA"),
-              e.submitter && (e.submitter.textContent = "Email submitted. Thanks."),
+              event.submitter && (event.submitter.style.backgroundColor = "#FAA"),
+              event.submitter && (event.submitter.textContent = "Email submitted. Thanks."),
               a
             );
           } catch (e) {

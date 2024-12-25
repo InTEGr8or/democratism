@@ -2,6 +2,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome in Incognito Mode",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}",
+      "runtimeArgs": [
+        "--incognito",
+        "--new-window"
+      ],
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./src/*": "${webRoot}/src/*"
+      }
+    },
+    {
       "command": "./node_modules/.bin/astro dev",
       "name": "Development server",
       "request": "launch",
