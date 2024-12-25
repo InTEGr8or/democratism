@@ -1,0 +1,26 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+---
+
+<img src={src} alt={alt} class="styled-image" />
+
+<style>
+  .styled-image {
+    max-width: 50%;
+    float: right;
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .styled-image {
+      float: none;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+</style>

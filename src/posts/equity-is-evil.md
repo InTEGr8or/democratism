@@ -1,5 +1,6 @@
 ---
 title: Equity is Evil
+description: Equity is a euphamism for collective guilt.
 date: 2024-12-24T07:42:00Z-0800
 author: Mark Stouffer
 draft: true
@@ -10,6 +11,8 @@ First, equity is a false requirement. It's not even a requirement that is ever e
 Equity _never means_ distribution to all living humans. There are several good reasons not to include all living humans, because equitism is a false requirement, but the equitists themselves will be the first to start targetting demographic categories as being less deserving, and who their campaign of equitable redistribution _will take from_.
 
 And second, equity is a false requirement because it can never be achieved. It can't even mildly be achieved, and the real architects of the equity agenda know this. Even upon cursory examination, equal access to a product made by humans, such as AI inferrence, _serves no purpose_. Should, for instance, inferrence compute resources be allocated to people who don't want to use it? This is a non-trivial question because a significant initial cost of developing a new product made by and for humans is promotion. The economic category of promotion is concerned with converting people who do not want to use a product into people who do want to use a product. The market-based promoter already wants to expand the use of his product to the whole of the earth, but he is intelligent enough to be honest with himself and others about _who he will target first_. He targets people who he can convince to use his product so much that they will pay him to use it.
+
+![equity definition](/images/equity-definition.png)
 
 While the equitist also wants to expand the usage of the product he is promoting, he is much less honest about his primary target. In fact, I don't even know what it is and if you think that's a weak argument, I challenge you or anyone to give a clear statement of the ideal profile for campaigns of equity that aren't already part of regular market promotion. An equitist could ride a long way on the back of the regular market promoter who already tries to expand his market to the whole of the Earth, but at some point the equitest must hop off his free ride and take some steps for himself, and that is exactly where the equitist falls down.
 

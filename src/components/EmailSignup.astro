@@ -1,0 +1,66 @@
+---
+
+---
+
+<form id="signup" action="#" class="banner-form mt-4">
+  <div
+    class="input-group border p-2 rounded-sm mx-auto"
+    style="max-width:500px"
+  >
+    <input
+      name="email"
+      type="text"
+      class="form-control shadow-none rounded-sm bg-transparent border-0 text-dark"
+      placeholder="Email Address"
+      aria-label="Email Address"
+      aria-describedby="email-address"
+    />
+    <button
+      type="submit"
+      class="input-group-text btn btn-primary rounded"
+      id="email-address-b">Get Started</button
+    >
+  </div>
+  <script>
+    let tag = "form#signup", uriu = "https://z2z4aaf77ua232x5h5iad6f7gq0lnrwf.lambda-url.us-east-1.on.aws";
+
+    const form = document.querySelector(tag) as HTMLFormElement;
+    if (form) {
+      form.onsubmit = async (e: SubmitEvent) => {
+        if (e.target instanceof HTMLFormElement) {
+          if (e.submitter) {
+            (e.submitter.textContent = "Submitting");
+            (e.submitter as HTMLButtonElement).disabled = true;
+          }
+          const emailInput = e.target.querySelector('[name="email"]') as HTMLInputElement | null;
+          if (emailInput) {
+            emailInput.disabled = true;
+          }
+          e.preventDefault();
+          try {
+            const n = e.target;
+            const o: { [key: string]: string } = {};
+            for (let t = 0; t < n.length - 1; t++) {
+              const element = n[t] as HTMLInputElement;
+              if (element.value) {
+                o[element.name] = element.value;
+              }
+            }
+            let i = JSON.stringify(o);
+            console.log(i);
+            const s = await fetch(uriu, { method: "POST", body: i });
+            if (!s.ok) return Promise.reject(s);
+            const a = await s.json();
+            return (
+              e.submitter && (e.submitter.style.backgroundColor = "#FAA"),
+              e.submitter && (e.submitter.textContent = "Email submitted. Thanks."),
+              a
+            );
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      };
+    }
+  </script>
+</form>
