@@ -1,6 +1,23 @@
 ---
+import GtmBody from '../components/GtmBody.astro';
 import GtmHead from '../components/GtmHead.astro';
 import EmailSignup from '../components/EmailSignup.astro';
+import '../styles/global.css';
+
+interface Props {
+	content?: {
+		title?: string;
+		description?: string;
+		pubDate?: string;
+		updatedDate?: string;
+		heroImage?: string;
+	};
+}
+
+const {
+	content = {}
+} = Astro.props;
+const { title = '', description = '', pubDate, updatedDate, heroImage } = content;
 ---
 <!doctype html>
 <html lang="en">
@@ -13,16 +30,8 @@ import EmailSignup from '../components/EmailSignup.astro';
 		<title>Democratism Info</title>
 	</head>
 	<body>
+		<GtmBody />
 		<slot />
 		<EmailSignup />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
