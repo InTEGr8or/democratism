@@ -3,12 +3,14 @@
 ---
 
 <form id="signup" action="#" class="banner-form mt-4">
+  <h3>Find out what's coming next</h3>
   <div
     class="input-group border p-2 rounded-sm mx-auto"
     style="max-width:500px"
   >
     <input
       name="email"
+      id="email-address"
       type="text"
       class="form-control shadow-none rounded-sm bg-transparent border-0 text-dark"
       placeholder="Email Address"
@@ -18,29 +20,39 @@
     <button
       type="submit"
       class="input-group-text btn btn-primary rounded"
-      id="email-address-b">Get Started</button
+      id="email-address-button">Get Started</button
     >
   </div>
   <script>
-    const tag = "form#signup", uriu = "https://z2z4aaf77ua232x5h5iad6f7gq0lnrwf.lambda-url.us-east-1.on.aws";
+    const tag = "form#signup",
+      uriu =
+        "https://z2z4aaf77ua232x5h5iad6f7gq0lnrwf.lambda-url.us-east-1.on.aws";
 
     const form = document.querySelector(tag) as HTMLFormElement;
     if (form) {
       form.onsubmit = async (event: SubmitEvent) => {
         if (event.target instanceof HTMLFormElement) {
           if (event.submitter) {
-            (event.submitter.textContent = "Submitting");
+            event.submitter.textContent = "Submitting";
             (event.submitter as HTMLButtonElement).disabled = true;
           }
-          const emailInput = event.target.querySelector('[name="email"]') as HTMLInputElement | null;
+          const emailInput = event.target.querySelector(
+            '[name="email"]'
+          ) as HTMLInputElement | null;
           if (emailInput) {
             emailInput.disabled = true;
           }
           event.preventDefault();
           try {
             const formElement = event.target;
-            const formData: { [key: string]: string } = {site:"democratism.info"};
-            for (let formItem = 0; formItem < formElement.length - 1; formItem++) {
+            const formData: { [key: string]: string } = {
+              site: "democratism.info",
+            };
+            for (
+              let formItem = 0;
+              formItem < formElement.length - 1;
+              formItem++
+            ) {
               const element = formElement[formItem] as HTMLInputElement;
               if (element.value) {
                 formData[element.name] = element.value;
@@ -48,12 +60,17 @@
             }
             let formDataString = JSON.stringify(formData);
             console.log(formDataString);
-            const s = await fetch(uriu, { method: "POST", body: formDataString });
+            const s = await fetch(uriu, {
+              method: "POST",
+              body: formDataString,
+            });
             if (!s.ok) return Promise.reject(s);
             const a = await s.json();
             return (
-              event.submitter && (event.submitter.style.backgroundColor = "#FAA"),
-              event.submitter && (event.submitter.textContent = "Email submitted. Thanks."),
+              event.submitter &&
+                (event.submitter.style.backgroundColor = "#FAA"),
+              event.submitter &&
+                (event.submitter.textContent = "Email submitted. Thanks."),
               a
             );
           } catch (e) {
