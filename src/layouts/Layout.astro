@@ -1,6 +1,7 @@
 ---
 import GtmBody from '../components/GtmBody.astro';
 import GtmHead from '../components/GtmHead.astro';
+import Header from '../components/Header.astro';
 import EmailSignup from '../components/EmailSignup.astro';
 import '../styles/global.css';
 
@@ -31,6 +32,7 @@ const { title = '', description = '', pubDate, updatedDate, heroImage } = conten
 	</head>
 	<body>
 		<GtmBody />
+		<Header />
 		<slot />
 		<EmailSignup />
 	</body>
