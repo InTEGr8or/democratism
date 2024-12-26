@@ -8,7 +8,7 @@ draft: true
 
 First, equity is a false requirement. False requirements solve the wrong problem. It's not even a requirement that is even described clearly, but if you tried to describe it clearly, you would find it quickly decompose into petty discriminations, which would be embarrasing to any promoter of equity, who I will describe as an _equitist_.
 
-Equity _never means_ distribution to all living humans. There are several good reasons not to include all living humans, because equitism is a false requirement, but the equitists themselves will be the first to start targetting demographic categories as being less deserving, and who their campaign of equitable redistribution _will take from_.
+Equity is promoted as a way of distributing goods to more people, but it _never means_ distribution to all living humans. There are several good reasons not to include all living humans, because equitism is a false requirement, but the equitists themselves will be the first to start targetting demographic categories as being less deserving, and who their campaign of equitable redistribution _will take from_.
 
 And second, equity is a false requirement because it can never be achieved. It can't even mildly be achieved, and the real architects of the equity agenda know this. Even upon cursory examination, equal access to a product made by humans, such as AI inferrence, _serves no purpose_. Should, for instance, inferrence compute resources be allocated to people who don't want to use it? This is a non-trivial question because a significant initial cost of developing a new product made by and for humans is promotion.
 
