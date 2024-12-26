@@ -6,7 +6,7 @@ author: Mark Stouffer
 draft: true
 ---
 
-First, equity is a false requirement. False requirements solve the wrong problem. It's not even a requirement that is even described clearly, but if you tried to describe it clearly, you would find it quickly decompose into petty discriminations, which would be embarrasing to the promoters of equity, who I'll call equitists.
+First, equity is a false requirement. False requirements solve the wrong problem. It's not even a requirement that is even described clearly, but if you tried to describe it clearly, you would find it quickly decompose into petty discriminations, which would be embarrasing to any promoter of equity, who I will describe as an _equitist_.
 
 Equity _never means_ distribution to all living humans. There are several good reasons not to include all living humans, because equitism is a false requirement, but the equitists themselves will be the first to start targetting demographic categories as being less deserving, and who their campaign of equitable redistribution _will take from_.
 
