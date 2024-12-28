@@ -1,6 +1,6 @@
 ---
+import Head from '../components/Head.astro';
 import GtmBody from '../components/GtmBody.astro';
-import GtmHead from '../components/GtmHead.astro';
 import Header from '../components/Header.astro';
 import EmailSignup from '../components/EmailSignup.astro';
 import '../styles/global.css';
@@ -22,14 +22,7 @@ const { title = '', description = '', pubDate, updatedDate, heroImage } = conten
 ---
 <!doctype html>
 <html lang="en">
-	<head>
-		<GtmHead />
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Democratism Info</title>
-	</head>
+	<Head />
 	<body>
 		<GtmBody />
 		<Header />

@@ -50,8 +50,8 @@ posts.sort((a: Post, b: Post) => new Date(b.frontmatter.date).getTime() - new Da
 <Layout>
 	{posts.map(async (post: Post) => (
 		<div>
-			<h2>{post.frontmatter.title}</h2>
-			<p>{post.frontmatter.date}</p>
+			<h2 class="text-3xl font-bold mb-5 ">{post.frontmatter.title}</h2>
+			<div class="float-right text-gray-700 mb-5">{post.frontmatter.date}</div>
       <RenderHtml html={await post.compiledContent()}/>
 		</div>
 	))}

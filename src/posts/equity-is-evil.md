@@ -1,7 +1,7 @@
 ---
 title: Equity is Evil
 description: Equity is a euphamism for collective guilt.
-date: 2024-12-24T07:42:00Z-0800
+date: 2024-12-24T07:42:00:000Z-0800
 author: Mark Stouffer
 draft: true
 ---

@@ -11,6 +11,7 @@
     <input
       name="email"
       id="email-address"
+      title="Email Address"
       type="text"
       class="form-control shadow-none rounded-sm bg-transparent border-0 text-dark"
       placeholder="Email Address"
@@ -19,6 +20,7 @@
     />
     <button
       type="submit"
+      title="Subscribe to email newsletter"
       class="input-group-text btn btn-primary rounded"
       id="email-address-button">Get Started</button
     >
@@ -46,7 +48,7 @@
           try {
             const formElement = event.target;
             const formData: { [key: string]: string } = {
-              site: "democratism.info",
+              site: window.location.hostname,
             };
             for (
               let formItem = 0;
