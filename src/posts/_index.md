@@ -18,7 +18,14 @@ So let us begin with a comprehensive list of both the popular concept of democra
 
 ## Introduction
 
-In the vast expanse of human history, the concept of democracy has been a beacon of hope and progress. However, the term "democracy" itself is often misunderstood, leading to misconceptions about its true essence and the values it upholds. This article aims to clarify these misunderstandings and delve into the core principles of democracy, emphasizing the importance of "democratism" as a guiding force for a truly democratic society.
+In the vast expanse of human history, the concept of democracy has been a beacon of hope and progress. However, the term "democracy" itself is often misunderstood, leading to misconceptions about its true essence and the values it upholds.
+
+NOTE: Democracy "is often misunderstood" because the concept difers greatly from its implementation.
+
+This article aims to clarify these misunderstandings and delve into the core principles of democracy, emphasizing the importance of "democratism" as a guiding force for a truly democratic society.
+
+NOTE: This article will not assume that the dominant political theory is simply accidentally misunderstood. This article will ask the somewhat novel approach of asking if democracy as it is promoted and used is a coherent ideal. Certainly, a majority vote system exists and can be used, so we are not going to question if such a system can possibly be used. However, we will question the entire remainder of democracy wherin majority vote is promoted and campaigned for as the system to be applied generally.
+
 
 ## The Misunderstanding of Democracy
 
