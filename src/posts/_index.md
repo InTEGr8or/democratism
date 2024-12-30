@@ -10,11 +10,23 @@ categories: ["politics"]
 
 Currently, the Democratic Party is in crisis, so it is a very good time to look closely at all the ways it is falling apart and ask ourselves: "Is this a failure of the Democratic Party, or are there problems with the concept of democracy as a political ideal?"
 
+But why use the word "democratism" instead of "democracy"? Well, we have words such as liberalism and conservatism, which are used to describe political campaigns and ideologies. So, why not use the word "democratism" to describe the political campaign and ideology of democracy as a political campaign to promote the ideology of democracy? Anyone who doubts that this ideology is promoted needs only to look at the popular daily use of the word "democratization" in all its various meanings.
+
+There should be no doubt that there is a political campaign to promote the ideology of democracy. There is even a recent compilation of hundreds of news promoters in hundreds of different markets in the US reciting the exact same multi-paragraph script which concludes with "this is extremely troublling to our democracy". No reference is given to who wrote the script they are all reciting, but surely the multi-paragraph reciting was not repeated by hundreds of outlets accidently. Every standard of detecting plagerism would indicate that the public statement was _cooordinated_.
+
+So, we are using "democratism" to describe the political campaign and ideology of democracy as a political campaign to promote the ideology of democracy. We will also loop in the concept of "democratization" as it is used in political _and economic_ discourse and as an ideal.
+
 To perform this comprehensive analysis, we must first clarify what the concept of democracy is. We'll look at how democracy is used in political discourse and how it's defined in political theory. Then, we'll examine the core principles of democracy and critically evaluate them.
 
 Why? Certainly, this is a worthy endeavor since so much of society and culture are handed over to democratic arbitration. The concept of "democratization" is widely used on a regular basis as an ideal to be used in determining who get's what, and why. So, "democratization" will also fall under our microscope and telescope of critical analysis. We will attempt to look at it from every angle, including from the inside and the outside.
 
+If democracy is prommoted as an idea, that is to say, as something to be pursued in life and even as a political campaign, and if it is false or flawed, then it will promote false requirements. False requirements _always_ end up sovling the wrong problem. So we will also investigate all the cultural artifacts that have been produced and that we live with today because moralists and "thought leaders" have been promoting the false requirements of democracy for many decades.
+
 So let us begin with a comprehensive list of both the popular concept of democracy and the more technically developed definitions of democracy so that we can "deconstruct" them.
+
+NOTE: I will be using the justifications for democracy produced by OPEN AI's GPT-4o model as a first draft. It has read much of the internet, and the LLM is specifically designed to produce the most common text phrases, so it is probably a better starting point than any academic study, however, we will also incorporate those as time permits.
+
+All edits are available at [The GitHub repo for this site](https://github.com/integ8or/democratism)
 
 ## Introduction
 
@@ -27,10 +39,13 @@ This article aims to clarify these misunderstandings and delve into the core pri
 NOTE: This article will not assume that the dominant political theory is simply accidentally misunderstood. This article will ask the somewhat novel approach of asking if democracy as it is promoted and used is a coherent ideal. Certainly, a majority vote system exists and can be used, so we are not going to question if such a system can possibly be used. However, we will question the entire remainder of democracy wherin majority vote is promoted and campaigned for as the system to be applied generally.
 
 
+
 ## The Misunderstanding of Democracy
 
 Democracy is often mistakenly equated with majority rule, where the will of the majority prevails over the rights and interests of minorities. This narrow interpretation fails to capture the essence of democracy, which is a system of governance that values individual rights, freedom, and equality.
 Democracy is not merely about voting for leaders or making decisions through popular referendums. It is a complex system that encompasses various institutions, processes, and norms that ensure the participation, representation, and accountability of all citizens.
+
+NOTE: This is a
 
 ## The Core Principles of Democracy
 
@@ -40,6 +55,7 @@ To understand the true nature of democracy, let's examine its core principles:
 3. **Separation of Powers**: Democracy divides power among various institutions, such as the legislature, executive, and judiciary. This separation ensures that no single branch of government can exercise unchecked power and that checks and balances are in place to maintain the integrity of the system.
 4. **Rule of Law**: Democracy is based on the principle of the rule of law, which means that all citizens, including government officials, are subject to the same laws and are equal before the law. This ensures that the law is applied fairly and consistently.
 5. **Representation and Accountability**: Democracy requires that all citizens have the opportunity to be represented in the political process and that elected officials are held accountable for their actions. This can be achieved through various mechanisms, such as regular elections, term limits, and the ability to recall or impeach officials.
+
 ## Democratism: A Guiding Force for Democracy
 
 Democratism is a philosophy that serves as a guiding force for democracy. It emphasizes the importance of active citizenship, participation, and engagement in the political process. Democratism encourages individuals to take an active role in shaping their communities and society, rather than relying solely on elected officials to make decisions on their behalf.
