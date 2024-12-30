@@ -3,6 +3,7 @@
 Democratism is a false concept that's been smuggled into the popular cultural content, and which must be evicted in order to recover cultural health. It is a diseased thought-virus plague that's produced decamegadeth genocide and will produce gigadeath if it's not therapudically healed.
 
 
+
 # Astro Starter Kit: Basics
 
 ```sh
