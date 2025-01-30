@@ -5,28 +5,34 @@ import Header from '../components/Header.astro';
 import EmailSignup from '../components/EmailSignup.astro';
 import '../styles/global.css';
 
+import { twMerge } from 'tailwind-merge';
+
 interface Props {
-	content?: {
-		title?: string;
-		description?: string;
-		pubDate?: string;
-		updatedDate?: string;
-		heroImage?: string;
-	};
+  content?: {
+    title?: string;
+    description?: string;
+    pubDate?: string;
+    updatedDate?: string;
+    heroImage?: string;
+  };
+  className?: string;
 }
 
-const {
-	content = {}
-} = Astro.props;
-const { title = '', description = '', pubDate, updatedDate, heroImage } = content;
+const { content = { title: '' }, className } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = content;
 ---
+
 <!doctype html>
 <html lang="en">
-	<Head />
-	<body>
-		<GtmBody />
-		<Header />
-		<slot />
-		<EmailSignup />
-	</body>
+  <Head />
+  <body>
+    <GtmBody />
+    <div class="px-4 md:px-8 lg:px-16">
+      <Header />
+    </div>
+    <div class="px-4 md:px-8 lg:px-16">
+      <slot />
+    </div>
+    <EmailSignup />
+  </body>
 </html>

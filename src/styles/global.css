@@ -5,6 +5,12 @@ img {
   margin-left: 20px;
   margin-bottom: 10px;
 }
+img.hero {
+  float: left;
+  width: 40%;
+  margin-right: 60%;
+  padding-bottom: 1.2em;
+}
 
 form#signup {
   input {
@@ -38,4 +44,33 @@ form#signup {
 
 .input-group input {
   margin-right: 10px; /* Add some space between input and button */
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  padding-top: 1.2em;
+}
+
+h1 {
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+}
+
+h2 {
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
 }

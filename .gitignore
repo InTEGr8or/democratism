@@ -3,6 +3,9 @@ dist/
 
 # generated types
 .astro/
+eslint-files.csv
+eslint-files.json
+eslint-results.json
 
 # dependencies
 node_modules/
