@@ -1,11 +1,9 @@
 ---
-import Head from '../components/Head.astro';
-import GtmBody from '../components/GtmBody.astro';
-import Header from '../components/Header.astro';
-import EmailSignup from '../components/EmailSignup.astro';
-import '../styles/global.css';
-
-import { twMerge } from 'tailwind-merge';
+import Head from "../components/Head.astro";
+import GtmBody from "../components/GtmBody.astro";
+import Header from "../components/Header.astro";
+import StripeBuyButton from "../components/StripeBuyButton.astro";
+import "../styles/global.css";
 
 interface Props {
   content?: {
@@ -18,7 +16,7 @@ interface Props {
   className?: string;
 }
 
-const { content = { title: '' }, className } = Astro.props;
+const { content = { title: "" } } = Astro.props;
 const { title, description, pubDate, updatedDate, heroImage } = content;
 ---
 
@@ -33,6 +31,11 @@ const { title, description, pubDate, updatedDate, heroImage } = content;
     <div class="px-4 md:px-8 lg:px-16">
       <slot />
     </div>
-    <EmailSignup />
+    <div class="flex flex-col items-center mt-16">
+      <h3 class="text-2xl font-bold">
+        Find out what's coming next
+      </h3>
+      <StripeBuyButton />
+    </div>
   </body>
 </html>

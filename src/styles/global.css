@@ -35,6 +35,10 @@ form#signup {
     cursor: pointer;
   }
 }
+stripe-buy-button {
+  margin-top: 10px;
+  align-self: center;
+}
 
 /* New styles for input group */
 .input-group {
