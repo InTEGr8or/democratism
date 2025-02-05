@@ -4,6 +4,7 @@ date: 2024-12-30T10:30:00-08:00
 draft: false
 tags: ["politics", "democracy", "democratism"]
 categories: ["politics"]
+amazonLink: "https://www.amazon.com/Ideology-Democratism-Emily-B-Finley/dp/0197642292/"
 ---
 
 ## A Comprehensive Criticism of Democracy's Core Principles
@@ -27,6 +28,7 @@ So let us begin with a comprehensive list of both the popular concept of democra
 NOTE: I will be using the justifications for democracy produced by OPEN AI's GPT-4o model as a first draft. It has read much of the internet, and the LLM is specifically designed to produce the most common text phrases, so it is probably a better starting point than any academic study, however, we will also incorporate those as time permits.
 
 All edits are available at [The GitHub repo for this site](https://github.com/integ8or/democratism)
+
 
 ## Introduction
 

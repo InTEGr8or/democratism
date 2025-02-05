@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import RenderHtml from '../components/RenderHtml.astro';
+import AmazonBook from '../components/AmazonBook.astro';
 
 interface Post {
   frontmatter: {
@@ -51,6 +52,9 @@ posts.sort((a: Post, b: Post) => new Date(b.frontmatter.date).getTime() - new Da
 			<h2 class="text-3xl font-bold mb-5">{post.frontmatter.title}</h2>
 			<div class="md:columns-2 lg:columns-3 text-gray-700 mb-5">{post.frontmatter.date}</div>
       <RenderHtml html={await post.compiledContent()}/>
+      if (post.frontmatter.amazonLink != null) {
+        <AmazonBook amazonLink="https://www.amazon.com/Ideology-Democratism-Emily-B-Finley/dp/0197642292/" />
+      }
 		</div>
 	))}
 </Layout>
