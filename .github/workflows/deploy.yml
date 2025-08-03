@@ -11,7 +11,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write # Changed to write to allow committing new images
   pages: write
   id-token: write
 
@@ -31,6 +31,16 @@ jobs:
           node-version: "20"
       - name: Install dependencies
         run: npm install
+      - name: Compile Amazon Image Enrichment Script
+        run: npm run compile-enrichment # Compile the TypeScript script
+      - name: Run Amazon Image Enrichment Script
+        run: npm run enrich-amazon # Execute the compiled JavaScript script
+      - name: Commit new images and map
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "feat: Add new Amazon product images and map from enrichment"
+          branch: ${{ github.head_ref || github.ref_name }} # Commit to the current branch (PR or push)
+          file_pattern: 'public/images/enrichment/*.jpg src/data/amazonImageMap.json' # Commit new images and the map
       - name: Build site
         run: npm run build
       - name: Upload artifact

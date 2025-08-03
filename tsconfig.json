@@ -12,6 +12,7 @@
     "jsxImportSource": "react",
     "module": "ESNext",
     "moduleResolution": "node",
+    "resolveJsonModule": true, // Added this line
     "types": [
       "astro/client"
     ]
