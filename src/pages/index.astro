@@ -14,7 +14,7 @@ const rootIndex = await getEntry({
 
 const allDocs = await getCollection('docs');
 
-const topLevelContent = allDocs.filter((entry: CollectionEntry&lt;'docs'&gt;) => {
+const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => {
   // Filter for top-level files and _index.md files within top-level folders
   if (!entry.slug) {
     console.warn(`Entry with id ${entry.id} has no slug.`);
@@ -48,17 +48,11 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry&lt;'docs'&gt;) =>
 <Layout>
   {rootIndex && (async () => {
     const rendered = await (rootIndex as any).render(); // Cast to any for debugging
-          console.log('Debug: rootIndex.rendered object:', rendered);
-          if (rendered && rendered.Content) {
-            return &lt;rendered.Content /&gt;;
-          } else {
-            console.error('Error: rootIndex.rendered.Content is undefined or null.');
-            return &lt;p&gt;Error: Main content could not be loaded.&lt;/p&gt;;
-          }
-    if (Content) {
-      return <Content />;
+    console.log('Debug: rootIndex.rendered object:', rendered);
+    if (rendered && rendered.Content) {
+      return <rendered.Content />;
     } else {
-      console.error('Error: rootIndex.render().Content is undefined or null.');
+      console.error('Error: rootIndex.rendered.Content is undefined or null.');
       return <p>Error: Main content could not be loaded.</p>;
     }
   })()}
@@ -72,5 +66,6 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry&lt;'docs'&gt;) =>
         href={item.href}
       />
     ))}
+    <AmazonBook asin="0132350882" imageMap={amazonImageMap} />
   </div>
 </Layout>
