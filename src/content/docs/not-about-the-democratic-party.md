@@ -1,3 +1,7 @@
+---
+title: Not About the Democratic Party
+summary: ""
+---
 This criticism of democratism should not be confused with criticism of a specific group of people, such as a political party.
 
 The problems we're addressing are in the descriptions and the chosen definitions of the statement of an ideal, so it is much broader than a specific group of people. It's also something that can be transmitted by words from person to person across parties, across time, and across borders.

@@ -1,3 +1,7 @@
+---
+title: Wanting to be a Member of the Majority
+summary: ""
+---
 "Majority rule" encourages people to be part of the ruling party, called "the majority".
 
 They can become part of this majority party simply by believing what they are told the majority believes, and by promoting what they are told the majority promote and advocating what they are told the majority advocate for. Anyone can become part of the majority simply by voting for the candidate that the news clergy tells them will be the winner.

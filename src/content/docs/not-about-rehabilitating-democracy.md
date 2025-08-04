@@ -1,3 +1,7 @@
+---
+title: This Deep Dive should not focus on rehabilitating democratism
+summary: ""
+---
 This Deep Dive should not focus on rehabilitiating democratism.
 
 Pointing out the association between fascism and democratism _is not_, and should not be viewed as an attempt to rehabilitate or make excuses for fascism. It should be viewed as an attempt to discredit and condemn democratism as a whole.

@@ -1,5 +1,6 @@
 ---
 title: The Democratist Political Pyramid Scheme
+summary: ""
 date: 2024-12-26 12:00:00
 description: The Democratist Party is a pyramid scheme that uses the government to steal from the poor and give to the rich.
 tags: politics, democracy, republicanism, libertarianism, conservatism, liberalism, socialism, communism, fascism, nazism, democracy, republicanism, libertarianism, conservatism, liberalism, socialism, communism, fascism, nazism

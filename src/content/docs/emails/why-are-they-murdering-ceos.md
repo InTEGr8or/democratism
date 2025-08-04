@@ -2,6 +2,7 @@
 layout: email
 title: "The CEO Murder Spree"
 date: 2021-01-25 12:00:00
+summary: ""
 categories: [email]
 tags: [email]
 ---
