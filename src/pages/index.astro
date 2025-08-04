@@ -1,72 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import RenderHtml from '../components/RenderHtml.astro';
+import type { CollectionEntry } from 'astro:content';
 import AmazonBook from '../components/AmazonBook.astro';
-import amazonImageMap from '../data/amazonImageMap.json'; // Import the generated map
+import amazonImageMap from '../data/amazonImageMap.json';
+import { getCollection, getEntry } from 'astro:content';
+import ContentPanel from '../components/ContentPanel.astro';
+import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
 
-interface Post {
-  frontmatter: {
-    title: string;
-    date: string;
-    amazonLink?: string; // Make amazonLink optional
-  };
-  compiledContent: () => Promise<string>;
-}
+const rootIndex = await getEntry({
+  collection: 'docs',
+  id: '_index',
+});
 
-const modules = import.meta.glob('../posts/*.md');
-const posts: Post[] = [];
-for (const path in modules) {
-  const module = modules[path];
-  if (module) { // Add check for undefined module
-    const post: unknown = await module();
-    if (isPost(post)) {
-      posts.push({
-        ...post,
-        compiledContent: post.compiledContent,
-      });
-    }
+const allDocs = await getCollection('docs');
+
+const topLevelContent = allDocs.filter((entry: CollectionEntry&lt;'docs'&gt;) => {
+  // Filter for top-level files and _index.md files within top-level folders
+  if (!entry.slug) {
+    console.warn(`Entry with id ${entry.id} has no slug.`);
+    return false;
   }
-}
-
-function isPost(post: unknown): post is Post {
-  return (
-    post !== null &&
-    typeof post === 'object' &&
-    'frontmatter' in post &&
-    typeof post.frontmatter === 'object' &&
-    post.frontmatter !== null &&
-    'title' in post.frontmatter &&
-    typeof post.frontmatter.title === 'string' &&
-    'date' in post.frontmatter &&
-    typeof post.frontmatter.date === 'string' &&
-    'compiledContent' in post &&
-    typeof post.compiledContent === 'function'
-  );
-}
-
-// sort posts by date
-posts.sort((a: Post, b: Post) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+  const slugParts = entry.slug.split('/');
+  const isTopLevelFile = slugParts.length === 1 && entry.slug !== '_index';
+  const isTopLevelSubfolderIndex = slugParts.length === 2 && slugParts[1] === '_index';
+  return isTopLevelFile || isTopLevelSubfolderIndex;
+}).map((entry): ContentPanelProps => {
+  const slugParts = entry.slug.split('/');
+  if (slugParts.length === 1) { // Top-level file
+    return {
+      title: entry.data.title as string,
+      summary: (entry.data.summary ?? '') as string,
+      mainImage: entry.data.mainImage as string | undefined,
+      href: `/content/${entry.slug}`,
+    };
+  } else { // Top-level subfolder (_index.md inside a folder)
+    const folderName = slugParts[0];
+    return {
+      title: entry.data.title as string,
+      summary: (entry.data.summary ?? '') as string,
+      mainImage: entry.data.mainImage as string | undefined,
+      href: `/content/${folderName}/`,
+    };
+  }
+});
 ---
 
 <Layout>
-	{posts.map(async (post: Post) => {
-    const asinMatch = post.frontmatter.amazonLink?.match(/\/dp\/([A-Z0-9]{10})/);
-    const asin = asinMatch ? asinMatch[1] : null;
-    // Ensure amazonImageMap is treated as a dictionary
-    const imageId = asin ? (amazonImageMap as { [key: string]: string })[asin] : undefined;
+  {rootIndex && (async () => {
+    const rendered = await (rootIndex as any).render(); // Cast to any for debugging
+          console.log('Debug: rootIndex.rendered object:', rendered);
+          if (rendered && rendered.Content) {
+            return &lt;rendered.Content /&gt;;
+          } else {
+            console.error('Error: rootIndex.rendered.Content is undefined or null.');
+            return &lt;p&gt;Error: Main content could not be loaded.&lt;/p&gt;;
+          }
+    if (Content) {
+      return <Content />;
+    } else {
+      console.error('Error: rootIndex.render().Content is undefined or null.');
+      return <p>Error: Main content could not be loaded.</p>;
+    }
+  })()}
 
-    return (
-      <div>
-        <h2 class="text-3xl font-bold mb-5">{post.frontmatter.title}</h2>
-        <div class="md:columns-2 lg:columns-3 text-gray-700 mb-5">{post.frontmatter.date}</div>
-        <RenderHtml html={await post.compiledContent()}/>
-        {post.frontmatter.amazonLink && (
-          <AmazonBook amazonLink={post.frontmatter.amazonLink} imageId={imageId} />
-        )}
-      </div>
-    );
-  })}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {topLevelContent.map((item) => (
+      <ContentPanel
+        title={item.title}
+        summary={item.summary}
+        mainImage={item.mainImage}
+        href={item.href}
+      />
+    ))}
+  </div>
 </Layout>
