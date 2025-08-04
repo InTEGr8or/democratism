@@ -46,16 +46,12 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => {
 ---
 
 <Layout>
-  {rootIndex && (async () => {
-    const rendered = await (rootIndex as any).render(); // Cast to any for debugging
-    console.log('Debug: rootIndex.rendered object:', rendered);
-    if (rendered && rendered.Content) {
-      return <rendered.Content />;
-    } else {
-      console.error('Error: rootIndex.rendered.Content is undefined or null.');
-      return <p>Error: Main content could not be loaded.</p>;
-    }
-  })()}
+  {rootIndex && rootIndex.rendered && rootIndex.rendered.html && (
+    <Fragment set:html={rootIndex.rendered.html} />
+  )}
+  {!rootIndex || !rootIndex.rendered || !rootIndex.rendered.html && (
+    <p>Error: Main content could not be loaded.</p>
+  )}
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {topLevelContent.map((item) => (

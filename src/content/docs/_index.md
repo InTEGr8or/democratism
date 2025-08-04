@@ -5,6 +5,7 @@ draft: false
 summary: ""
 tags: ["politics", "democracy", "democratism"]
 categories: ["politics"]
+slug: ""
 amazonLink: "https://www.amazon.com/Ideology-Democratism-Emily-B-Finley/dp/0197642292/"
 ---
 

@@ -2,6 +2,7 @@
 title: Democratism vs. Property
 date: 2025-01-31
 tags: [politics, economics]
+slug: democratism-vs-property
 summary: Democratism is sold as a system that keeps the government acountable to the people it governs, but how does it do that?
 ---
 Do you think you own anything?
