@@ -1,20 +1,52 @@
-### Task: Perform Full Clean and Reinstall to Resolve Content Collection Issues
+### Task: Re-apply and Strictly Verify `docs` Content Collection to `src/content.config.ts`
 
-**Objective:** Execute a comprehensive clean-up and reinstallation of project dependencies to resolve the persistent `Entry docs → _index was not found.` error and ensure Astro's content collection system functions correctly.
+**Objective:** Re-apply the `docs` content collection definition to `src/content.config.ts`, including its schema and explicit `glob` loader, and *strictly verify* that the changes are correctly written to the file system before committing.
 
 **Context:**
-Despite verifying the file path and adding an explicit loader to `src/content.config.ts`, the `Entry docs → _index was not found.` error continues to appear in the terminal. This suggests a deeper issue, possibly related to corrupted `node_modules`, stale caches, or dependency conflicts. A full clean and reinstall is often effective in resolving such environmental problems.
+`src/content.config.ts` is currently not updated with the `docs` content collection, despite previous attempts. This is a critical blocker. We need to ensure these changes are correctly applied and persisted this time.
+
+**Current `src/content.config.ts` content (as per previous `read_file`):**
+```typescript
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+const blog = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/blog",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+  }),
+});
+
+export const collections = { blog };
+```
 
 **Requirements:**
-1.  **Stop Development Server:** Ensure `npm run dev` is not running.
-2.  **Clean npm cache:** Run `npm cache clean --force`.
-3.  **Remove `node_modules`:** Delete the `node_modules` directory.
-4.  **Remove `package-lock.json`:** Delete the `package-lock.json` file.
-5.  **Reinstall dependencies:** Run `npm install`.
-6.  **Restart Development Server:** Run `npm run dev`.
+1.  **Ensure `import { glob } from "astro/loaders";` is present.**
+2.  **Add `docs` collection:** Define the `docs` collection with the following structure:
+    ```typescript
+    const docs = defineCollection({
+      loader: glob({
+        pattern: "**/*.{md,mdx}",
+        base: "./src/content/docs",
+      }),
+      schema: z.object({
+        title: z.string(),
+        mainImage: z.string().optional(),
+        summary: z.string().optional(),
+      }),
+    });
+    ```
+3.  **Export `docs` collection:** Add `docs` to the `export const collections = { blog, docs };` statement.
+4.  **STRICT VERIFICATION:** After writing the file, the subchat MUST immediately use `read_file` on `src/content.config.ts` to confirm that the content matches the intended changes. If it does not, the subchat MUST report this failure and NOT proceed.
+5.  **Commit Changes:** ONLY if the file content is strictly verified to be correct, commit the changes to `src/content.config.ts` with the commit message "feat: Re-applied and verified docs content collection configuration".
 
 **Expected Outcome:**
-The `Entry docs → _index was not found.` error will be resolved, and the content of `src/content/docs/_index.md` will be correctly displayed on the main page.
+The `src/content.config.ts` file will correctly define the `docs` content collection, and this change will be committed to the repository.
 
 **Validation:**
-Monitor the terminal output after `npm run dev` for the absence of the `_index` error. Verify the main page in the browser to confirm the content is rendered correctly and not as `[object Object]`.
+After the subchat completes this task, I will ask the user to restart `npm run dev` and provide the terminal output. We should no longer see errors related to the `docs` collection not existing.

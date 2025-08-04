@@ -49,10 +49,10 @@ graph TD
     subgraph Content Processing
         C[content/ Directory] --> D[Astro Content Collections]
         D -- getCollection --> E[src/pages/index.astro]
-        D -- getEntryBySlug --> F[src/pages/content/[...slug].astro]
+        D -- getEntryBySlug --> F["src/pages/content/[...slug].astro"]
     end
 
-    subgraph Main Page Rendering (index.astro)
+    subgraph Main Page Rendering index.astro
         E --> E1{Fetch content/_index.md}
         E1 --> E2[Render content/_index.md Content]
         E --> E3{Fetch Top-Level Subfolders & Files}
@@ -65,7 +65,7 @@ graph TD
         E2 & E5 & E7 --> G[Grid Layout]
     end
 
-    subgraph Dynamic Content Page Rendering ([...slug].astro)
+    subgraph Dynamic Content Page Rendering ...slug.astro
         F --> F1{Fetch Content Entry by Slug}
         F1 --> F2[Render Content Entry's Compiled Content]
         F1 -- If _index.md --> F3{Fetch Child Files & Subfolders}
