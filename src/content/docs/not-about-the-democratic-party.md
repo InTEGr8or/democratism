@@ -1,6 +1,7 @@
 ---
 title: Not About the Democratic Party
 summary: ""
+slug: not-about-the-democratic-party
 ---
 This criticism of democratism should not be confused with criticism of a specific group of people, such as a political party.
 

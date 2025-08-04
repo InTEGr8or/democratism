@@ -4,6 +4,7 @@ title: "The CEO Murder Spree"
 date: 2021-01-25 12:00:00
 summary: ""
 categories: [email]
+slug: emails/why-are-they-murdering-ceos
 tags: [email]
 ---
 Criminals are killing CEOs, and academic thought leaders are encouraging them. This is not a drill.

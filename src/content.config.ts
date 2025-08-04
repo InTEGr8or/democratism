@@ -22,6 +22,7 @@ const docs = defineCollection({
     title: z.string(),
     mainImage: z.string().optional(),
     summary: z.string().optional(),
+    slug: z.string(), // Add slug to the schema
   }),
 });
 

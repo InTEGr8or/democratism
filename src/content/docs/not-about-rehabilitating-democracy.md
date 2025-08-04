@@ -1,6 +1,7 @@
 ---
 title: This Deep Dive should not focus on rehabilitating democratism
 summary: ""
+slug: not-about-rehabilitating-democracy
 ---
 This Deep Dive should not focus on rehabilitiating democratism.
 
