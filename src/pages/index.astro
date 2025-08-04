@@ -1,11 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import type { CollectionEntry } from 'astro:content';
-import AmazonBook from '../components/AmazonBook.astro';
-import amazonImageMap from '../data/amazonImageMap.json';
 import { getCollection, getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content'; // Import CollectionEntry type
 import ContentPanel from '../components/ContentPanel.astro';
 import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
+import AmazonBook from '../components/AmazonBook.astro'; // Re-add AmazonBook import
+import amazonImageMap from '../data/amazonImageMap.json'; // Re-add amazonImageMap import
+// import RenderHtml from '../components/RenderHtml.astro'; // Removed unused import
 
 const rootIndex = await getEntry({
   collection: 'docs',
@@ -14,24 +15,24 @@ const rootIndex = await getEntry({
 
 const allDocs = await getCollection('docs');
 
-const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => {
+const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // Explicitly type entry
   // Filter for top-level files and _index.md files within top-level folders
-  if (!entry.slug) {
+  if (!entry.data.slug) { // Changed to entry.data.slug
     console.warn(`Entry with id ${entry.id} has no slug.`);
     return false;
   }
-  const slugParts = entry.slug.split('/');
-  const isTopLevelFile = slugParts.length === 1 && entry.slug !== '_index';
+  const slugParts = entry.data.slug.split('/'); // Changed to entry.data.slug
+  const isTopLevelFile = slugParts.length === 1 && entry.data.slug !== '_index'; // Changed to entry.data.slug
   const isTopLevelSubfolderIndex = slugParts.length === 2 && slugParts[1] === '_index';
   return isTopLevelFile || isTopLevelSubfolderIndex;
-}).map((entry): ContentPanelProps => {
-  const slugParts = entry.slug.split('/');
+}).map((entry: CollectionEntry<'docs'>): ContentPanelProps => { // Explicitly type entry
+  const slugParts = entry.data.slug.split('/'); // Changed to entry.data.slug
   if (slugParts.length === 1) { // Top-level file
     return {
       title: entry.data.title as string,
       summary: (entry.data.summary ?? '') as string,
       mainImage: entry.data.mainImage as string | undefined,
-      href: `/content/${entry.slug}`,
+      href: `/content/${entry.data.slug}`, // Changed to entry.data.slug
     };
   } else { // Top-level subfolder (_index.md inside a folder)
     const folderName = slugParts[0];
@@ -62,6 +63,7 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => {
         href={item.href}
       />
     ))}
+    {/* Keep AmazonBook if it's part of the original index.astro or _index.md content */}
     <AmazonBook amazonLink="https://www.amazon.com/dp/0197642292" imageId={amazonImageMap["0197642292"]} />
   </div>
 </Layout>
