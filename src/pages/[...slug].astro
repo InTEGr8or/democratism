@@ -1,9 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro'; // Updated path
-import { getCollection } from 'astro:content'; // Removed getEntry as it's not used in getStaticPaths
+import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import ContentPanel from '../components/ContentPanel.astro'; // Updated path
 import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
+
+// Helper function to get the first N words from a string
+function getFirstNWords(text: string | null | undefined, n: number): string {
+  if (!text) {
+    return '';
+  }
+  const words = text.split(/\s+/); // Split by any whitespace
+  return words.slice(0, n).join(' ');
+}
 
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
@@ -14,9 +23,7 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props {
-  entry: CollectionEntry<'docs'>;
-}
+// Removed unused interface Props {}
 
 const { entry } = Astro.props;
 
@@ -24,7 +31,7 @@ const { entry } = Astro.props;
 const isFolderIndex = entry.data.slug.endsWith('_index'); // Changed to entry.data.slug
 const currentFolderSlug = isFolderIndex ? entry.data.slug.replace('/_index', '') : ''; // Changed to entry.data.slug
 
-let childContent: CollectionEntry<'docs'>[] = [];
+let childContent: ContentPanelProps[] = []; // Changed type to ContentPanelProps[]
 if (isFolderIndex) {
   const allDocs = await getCollection('docs');
   childContent = allDocs.filter((childEntry: CollectionEntry<'docs'>) => { // Explicitly type childEntry
@@ -36,7 +43,7 @@ if (isFolderIndex) {
                                    !(childEntry.data.slug.endsWith('_index') && childEntry.data.slug.split('/').length > currentFolderSlug.split('/').length + 1); // Changed to entry.data.slug
     return isDirectChild && isNotSelfOrNestedIndex;
   }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => { // Explicitly type childEntry
-    const childSlugParts = childEntry.data.slug.split('/'); // Changed to entry.data.slug
+    // Removed unused childSlugParts
     const isChildFolder = childEntry.data.slug.endsWith('_index'); // Changed to entry.data.slug
     const childHref = isChildFolder
       ? `/${childEntry.data.slug.replace('/_index', '')}/` // Removed /content/
@@ -47,12 +54,13 @@ if (isFolderIndex) {
       summary: (childEntry.data.summary ?? '') as string,
       mainImage: childEntry.data.mainImage as string | undefined,
       href: childHref,
+      excerpt: getFirstNWords(childEntry.body, 50), // Added excerpt
     };
   });
 }
 ---
 
-<Layout title={entry.data.title}>
+<Layout content={{ title: entry.data.title }}> {/* Changed title prop to content prop */}
   <main>
     {/* Render the main content of the current entry */}
     {entry.rendered && entry.rendered.html && (
@@ -70,6 +78,7 @@ if (isFolderIndex) {
               summary={item.summary}
               mainImage={item.mainImage}
               href={item.href}
+              excerpt={item.excerpt}
             />
           ))}
         </div>

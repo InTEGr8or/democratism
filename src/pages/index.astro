@@ -6,7 +6,15 @@ import ContentPanel from '../components/ContentPanel.astro';
 import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
 import AmazonBook from '../components/AmazonBook.astro'; // Re-add AmazonBook import
 import amazonImageMap from '../data/amazonImageMap.json'; // Re-add amazonImageMap import
-// import RenderHtml from '../components/RenderHtml.astro'; // Removed unused import
+
+// Helper function to get the first N words from a string
+function getFirstNWords(text: string | null | undefined, n: number): string {
+  if (!text) {
+    return '';
+  }
+  const words = text.split(/\s+/); // Split by any whitespace
+  return words.slice(0, n).join(' ');
+}
 
 const rootIndex = await getEntry({
   collection: 'docs',
@@ -33,6 +41,7 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // 
       summary: (entry.data.summary ?? '') as string,
       mainImage: entry.data.mainImage as string | undefined,
       href: `/${entry.data.slug}`, // Changed to entry.data.slug
+      excerpt: getFirstNWords(entry.body, 50), // Use helper function for excerpt
     };
   } else { // Top-level subfolder (_index.md inside a folder)
     const folderName = slugParts[0];
@@ -41,12 +50,13 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // 
       summary: (entry.data.summary ?? '') as string,
       mainImage: entry.data.mainImage as string | undefined,
       href: `/${folderName}/`,
+      excerpt: getFirstNWords(entry.body, 50), // Use helper function for excerpt
     };
   }
 });
 ---
 
-<Layout>
+<Layout content={{ title: rootIndex.data.title }}> {/* Changed title prop to content prop */}
   {rootIndex && rootIndex.rendered && rootIndex.rendered.html && (
     <Fragment set:html={rootIndex.rendered.html} />
   )}
@@ -61,6 +71,7 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // 
         summary={item.summary}
         mainImage={item.mainImage}
         href={item.href}
+        excerpt={item.excerpt}
       />
     ))}
     {/* Keep AmazonBook if it's part of the original index.astro or _index.md content */}
