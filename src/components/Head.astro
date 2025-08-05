@@ -1,5 +1,12 @@
 ---
 import GtmHead from "./GtmHead.astro"
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Democratism Info", description } = Astro.props;
 ---
 <head>
   <GtmHead />
@@ -7,5 +14,6 @@ import GtmHead from "./GtmHead.astro"
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
-  <title>Democratism Info</title>
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
 </head>

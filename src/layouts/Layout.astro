@@ -22,7 +22,7 @@ const { title, description, pubDate, updatedDate, heroImage } = content;
 
 <!doctype html>
 <html lang="en">
-  <Head />
+  <Head title={title} description={description} /> {/* Pass title and description to Head */}
   <body>
     <GtmBody />
     <div class="px-4 md:px-8 lg:px-16">
