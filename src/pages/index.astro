@@ -32,7 +32,7 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // 
       title: entry.data.title as string,
       summary: (entry.data.summary ?? '') as string,
       mainImage: entry.data.mainImage as string | undefined,
-      href: `/content/${entry.data.slug}`, // Changed to entry.data.slug
+      href: `/${entry.data.slug}`, // Changed to entry.data.slug
     };
   } else { // Top-level subfolder (_index.md inside a folder)
     const folderName = slugParts[0];
@@ -40,7 +40,7 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // 
       title: entry.data.title as string,
       summary: (entry.data.summary ?? '') as string,
       mainImage: entry.data.mainImage as string | undefined,
-      href: `/content/${folderName}/`,
+      href: `/${folderName}/`,
     };
   }
 });

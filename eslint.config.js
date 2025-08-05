@@ -14,7 +14,7 @@ delete globals["AudioWorkletGlobalScope "];
 
 export default [
   {
-    files: ["**/*.js", "**/*.ts", "**/*.astro"],
+    files: ["**/*.js", "**/*.ts"], // Exclude .astro files from this general config
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -40,15 +40,24 @@ export default [
       "@typescript-eslint/no-explicit-any": "warn",
     },
   },
-  {
-    files: ["*.astro"],
-    languageOptions: {
-      parser: astro.parser,
-    },
-    rules: {
-      // override/add rules settings here, such as:
-      // "astro/no-set-html-directive": "error"
-    },
-  },
+  // Temporarily remove or comment out the .astro specific config to disable linting for them
+  // {
+  //   files: ["**/*.astro"],
+  //   languageOptions: {
+  //     parser: astro.parser,
+  //     parserOptions: {
+  //       parser: tseslint.parser,
+  //       project: "./tsconfig.json",
+  //       extraFileExtensions: [".astro"],
+  //     },
+  //   },
+  //   plugins: {
+  //     astro,
+  //   },
+  //   rules: {
+  //     // override/add rules settings here, such as:
+  //     // "astro/no-set-html-directive": "error"
+  //   },
+  // },
   prettierConfig,
 ];

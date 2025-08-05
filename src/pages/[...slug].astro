@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro'; // Updated path
+import { getCollection } from 'astro:content'; // Removed getEntry as it's not used in getStaticPaths
+import type { CollectionEntry } from 'astro:content';
+import ContentPanel from '../components/ContentPanel.astro'; // Updated path
+import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
+
+export async function getStaticPaths() {
+  const allDocs = await getCollection('docs');
+
+  return allDocs.map((entry) => ({
+    params: { slug: entry.data.slug }, // Changed to entry.data.slug
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'docs'>;
+}
+
+const { entry } = Astro.props;
+
+// Determine if this is an _index.md file for a folder
+const isFolderIndex = entry.data.slug.endsWith('_index'); // Changed to entry.data.slug
+const currentFolderSlug = isFolderIndex ? entry.data.slug.replace('/_index', '') : ''; // Changed to entry.data.slug
+
+let childContent: CollectionEntry<'docs'>[] = [];
+if (isFolderIndex) {
+  const allDocs = await getCollection('docs');
+  childContent = allDocs.filter((childEntry: CollectionEntry<'docs'>) => { // Explicitly type childEntry
+    // Check if it's a direct child of the current folder
+    const isDirectChild = childEntry.data.slug.startsWith(currentFolderSlug) && // Changed to entry.data.slug
+                          childEntry.data.slug.split('/').length === currentFolderSlug.split('/').length + 1; // Changed to entry.data.slug
+    // Exclude the _index.md itself and any deeper nested _index.md files
+    const isNotSelfOrNestedIndex = childEntry.data.slug !== entry.data.slug && // Changed to entry.data.slug
+                                   !(childEntry.data.slug.endsWith('_index') && childEntry.data.slug.split('/').length > currentFolderSlug.split('/').length + 1); // Changed to entry.data.slug
+    return isDirectChild && isNotSelfOrNestedIndex;
+  }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => { // Explicitly type childEntry
+    const childSlugParts = childEntry.data.slug.split('/'); // Changed to entry.data.slug
+    const isChildFolder = childEntry.data.slug.endsWith('_index'); // Changed to entry.data.slug
+    const childHref = isChildFolder
+      ? `/${childEntry.data.slug.replace('/_index', '')}/` // Removed /content/
+      : `/${childEntry.data.slug}`; // Removed /content/
+
+    return {
+      title: childEntry.data.title as string,
+      summary: (childEntry.data.summary ?? '') as string,
+      mainImage: childEntry.data.mainImage as string | undefined,
+      href: childHref,
+    };
+  });
+}
+---
+
+<Layout title={entry.data.title}>
+  <main>
+    {/* Render the main content of the current entry */}
+    {entry.rendered && entry.rendered.html && (
+      <Fragment set:html={entry.rendered.html} />
+    )}
+
+    {/* If it's a folder index, display child panels */}
+    {isFolderIndex && childContent.length > 0 && (
+      <section class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Contents in this section:</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {childContent.map((item) => (
+            <ContentPanel
+              title={item.title}
+              summary={item.summary}
+              mainImage={item.mainImage}
+              href={item.href}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+</Layout>
