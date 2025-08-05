@@ -9,15 +9,13 @@ interface Props {
   content?: {
     title?: string;
     description?: string;
-    pubDate?: string;
-    updatedDate?: string;
-    heroImage?: string;
+    // Removed unused pubDate, updatedDate, heroImage
   };
   className?: string;
 }
 
 const { content = { title: "" } } = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage } = content;
+const { title, description } = content; // Removed unused pubDate, updatedDate, heroImage
 ---
 
 <!doctype html>

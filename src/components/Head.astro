@@ -2,8 +2,8 @@
 import GtmHead from "./GtmHead.astro"
 
 interface Props {
-  title?: string;
-  description?: string;
+  title?: string | undefined; // Changed to string | undefined
+  description?: string | undefined; // Changed to string | undefined
 }
 
 const { title = "Democratism Info", description } = Astro.props;

@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'; // Updated path
-import { getCollection } from 'astro:content'; // Removed getEntry as it's not used in getStaticPaths
+import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import ContentPanel from '../components/ContentPanel.astro'; // Updated path
 import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
@@ -17,59 +17,56 @@ function getFirstNWords(text: string | null | undefined, n: number): string {
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
 
-  return allDocs.map((entry) => ({
-    params: { slug: entry.data.slug }, // Changed to entry.data.slug
-    props: { entry },
-  }));
+  return allDocs
+    .filter(entry => (entry.data as any).slug && (entry.data as any).slug.length > 0) // Cast to any for slug access
+    .map((entry) => ({
+      params: { slug: (entry.data as any).slug }, // Cast to any for slug access
+      props: { entry },
+    }));
 }
-
-// Removed unused interface Props {}
 
 const { entry } = Astro.props;
 
 // Determine if this is an _index.md file for a folder
-const isFolderIndex = entry.data.slug.endsWith('_index'); // Changed to entry.data.slug
-const currentFolderSlug = isFolderIndex ? entry.data.slug.replace('/_index', '') : ''; // Changed to entry.data.slug
+const isFolderIndex = entry.id.endsWith('/_index'); // Correctly identifies _index.md files by their ID
+const currentFolderSlugForChildren = (entry.data as any).slug; // Cast to any for slug access
 
 let childContent: ContentPanelProps[] = []; // Changed type to ContentPanelProps[]
 if (isFolderIndex) {
   const allDocs = await getCollection('docs');
   childContent = allDocs.filter((childEntry: CollectionEntry<'docs'>) => { // Explicitly type childEntry
-    // Check if it's a direct child of the current folder
-    const isDirectChild = childEntry.data.slug.startsWith(currentFolderSlug) && // Changed to entry.data.slug
-                          childEntry.data.slug.split('/').length === currentFolderSlug.split('/').length + 1; // Changed to entry.data.slug
-    // Exclude the _index.md itself and any deeper nested _index.md files
-    const isNotSelfOrNestedIndex = childEntry.data.slug !== entry.data.slug && // Changed to entry.data.slug
-                                   !(childEntry.data.slug.endsWith('_index') && childEntry.data.slug.split('/').length > currentFolderSlug.split('/').length + 1); // Changed to entry.data.slug
-    return isDirectChild && isNotSelfOrNestedIndex;
-  }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => { // Explicitly type childEntry
-    // Removed unused childSlugParts
-    const isChildFolder = childEntry.data.slug.endsWith('_index'); // Changed to entry.data.slug
+    // Simplified filter: Check if it's a direct child and not the index itself
+    const isDirectChild = childEntry.id.startsWith(currentFolderSlugForChildren + '/') && // Use currentFolderSlugForChildren
+                          childEntry.id.split('/').length === currentFolderSlugForChildren.split('/').length + 2; // Use currentFolderSlugForChildren
+    const isNotSelf = childEntry.id !== entry.id; // Exclude self
+    return isDirectChild && isNotSelf; // Simplified: removed isNotSelfOrNestedIndex
+  }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => { // Corrected map parameter typing
+    const isChildFolder = childEntry.id.endsWith('/_index');
     const childHref = isChildFolder
-      ? `/${childEntry.data.slug.replace('/_index', '')}/` // Removed /content/
-      : `/${childEntry.data.slug}`; // Removed /content/
+      ? `/${(childEntry.data as any).slug.replace('/_index', '')}/` // Cast to any for slug access
+      : `/${(childEntry.data as any).slug}`; // Cast to any for slug access
 
     return {
       title: childEntry.data.title as string,
       summary: (childEntry.data.summary ?? '') as string,
       mainImage: childEntry.data.mainImage as string | undefined,
       href: childHref,
-      excerpt: getFirstNWords(childEntry.body, 50), // Added excerpt
+      excerpt: getFirstNWords(childEntry.body, 50),
     };
   });
 }
 ---
 
-<Layout content={{ title: entry.data.title }}> {/* Changed title prop to content prop */}
+<Layout content={{ title: entry.data.title }}>
   <main>
-    <h1>{entry.data.title}</h1> {/* Added h1 for title */}
+    <h1>{entry.data.title}</h1>
     {/* Render the main content of the current entry */}
     {entry.rendered && entry.rendered.html && (
       <Fragment set:html={entry.rendered.html} />
     )}
 
     {/* If it's a folder index, display child panels */}
-    {isFolderIndex && childContent.length > 0 && (
+    {isFolderIndex && (
       <section class="mt-8">
         <h2 class="text-2xl font-bold mb-4">Contents in this section:</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

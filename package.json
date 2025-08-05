@@ -3,13 +3,18 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev &",
     "kill": "pkill -f astro",
+    "restart": "npm run kill && npm run dev:log",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "compile-enrichment": "tsc -p tsconfig.script.json",
-    "enrich-amazon": "node dist/scripts/enrich-amazon-images.js"
+    "enrich-amazon": "node dist/scripts/enrich-amazon-images.js",
+    "compile-scripts": "tsc -p tsconfig.script.json",
+    "check-content": "node dist/scripts/check-subfolder-content.js",
+    "capture-screenshot": "node dist/scripts/capture-screenshot.js",
+    "dev:log": "mkdir -p temp && astro dev > temp/dev-$(date +%Y%m%d-%H%M%S).log 2>&1"
   },
   "dependencies": {
     "@astrojs/language-server": "^2.15.4",
@@ -37,6 +42,7 @@
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-prettier": "^5.2.3",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.22.0",
+    "ts-node": "^10.9.2"
   }
 }

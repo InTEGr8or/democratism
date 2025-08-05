@@ -1,0 +1,20 @@
+12:53:17 [@spotlightjs/astro] [@spotlightjs/astro] Setting up Spotlight
+🔎 [Spotlight] Checking if we are already running on port 8969
+12:53:18 [types] Generated 2ms
+🔎 [Spotlight] Sidecar listening on 8969
+12:53:24 [content] Syncing content
+12:53:24 [WARN] [glob-loader] The base directory "/home/mstouffer/repos/democratism/src/blog/" does not exist.
+12:53:24 [content] Synced content
+
+ astro  v5.12.8 ready in 11394 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+12:53:24 watching for file changes...
+12:54:10 [200] /whats-wrong-with-democratism 413ms
+12:54:11 [WARN] [router] A `getStaticPaths()` route pattern was matched, but no matching static path was found for requested path `/.well-known/appspecific/com.chrome.devtools.json`.
+
+Possible dynamic routes being matched: src/pages/[...slug].astro.
+12:54:11 [404] /.well-known/appspecific/com.chrome.devtools.json 12ms
+🔎 [Spotlight] Shutting down server gracefully...
