@@ -18,7 +18,7 @@ export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
 
   return allDocs
-    .filter(entry => (entry.data as any).slug && (entry.data as any).slug.length > 0) // Cast to any for slug access
+    .filter(entry => (entry.data as any).slug && (entry.data as any).slug.length > 0) // Ensure slug is not empty or undefined
     .map((entry) => ({
       params: { slug: (entry.data as any).slug }, // Cast to any for slug access
       props: { entry },
@@ -29,7 +29,7 @@ const { entry } = Astro.props;
 
 // Determine if this is an _index.md file for a folder
 const isFolderIndex = entry.id.endsWith('/_index'); // Correctly identifies _index.md files by their ID
-const currentFolderSlugForChildren = (entry.data as any).slug; // Cast to any for slug access
+const currentFolderSlugForChildren = (entry.data as any).slug; // Use entry.data.slug for the folder's slug
 
 let childContent: ContentPanelProps[] = []; // Changed type to ContentPanelProps[]
 if (isFolderIndex) {
@@ -37,7 +37,7 @@ if (isFolderIndex) {
   childContent = allDocs.filter((childEntry: CollectionEntry<'docs'>) => { // Explicitly type childEntry
     // Simplified filter: Check if it's a direct child and not the index itself
     const isDirectChild = childEntry.id.startsWith(currentFolderSlugForChildren + '/') && // Use currentFolderSlugForChildren
-                          childEntry.id.split('/').length === currentFolderSlugForChildren.split('/').length + 2; // Use currentFolderSlugForChildren
+                          childEntry.id.split('/').length === currentFolderSlugForChildren.split('/').length + 1; // Changed to +1
     const isNotSelf = childEntry.id !== entry.id; // Exclude self
     return isDirectChild && isNotSelf; // Simplified: removed isNotSelfOrNestedIndex
   }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => { // Corrected map parameter typing
