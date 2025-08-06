@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Astro Debug (Compound)",
+      "compounds": [
+        "Launch Astro Dev Server (with Debug)",
+        "Attach to Astro Dev Server"
+      ],
+      "type":"node",
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome in Incognito Mode",
@@ -17,10 +25,22 @@
       }
     },
     {
-      "command": "./node_modules/.bin/astro dev",
-      "name": "Development server",
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Astro Dev Server",
+      "port": 9229,
+      "protocol": "inspector",
+      "restart": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node-terminal",
       "request": "launch",
-      "type": "node-terminal"
+      "name": "Launch Astro Dev Server (with Debug)",
+      "command": "npm run dev",
+      "console": "integratedTerminal"
     }
   ]
 }

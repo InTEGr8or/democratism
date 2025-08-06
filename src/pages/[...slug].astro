@@ -1,59 +1,29 @@
 ---
-import Layout from '../layouts/Layout.astro'; // Updated path
+import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import ContentPanel from '../components/ContentPanel.astro'; // Updated path
+import ContentPanel from '../components/ContentPanel.astro';
 import type { Props as ContentPanelProps } from '../components/ContentPanel.astro';
-
-// Helper function to get the first N words from a string
-function getFirstNWords(text: string | null | undefined, n: number): string {
-  if (!text) {
-    return '';
-  }
-  const words = text.split(/\s+/); // Split by any whitespace
-  return words.slice(0, n).join(' ');
-}
+import { isFolderIndexEntry, getDirectChildren } from '../utils/content'; // Removed getFirstNWords
 
 export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
 
   return allDocs
-    .filter(entry => (entry.data as any).slug && (entry.data as any).slug.length > 0) // Ensure slug is not empty or undefined
+    .filter(entry => (entry.data as any).slug && (entry.data as any).slug.length > 0)
     .map((entry) => ({
-      params: { slug: (entry.data as any).slug }, // Cast to any for slug access
+      params: { slug: (entry.data as any).slug },
       props: { entry },
     }));
 }
 
 const { entry } = Astro.props;
 
-// Determine if this is an _index.md file for a folder
-const isFolderIndex = entry.id.endsWith('/_index'); // Correctly identifies _index.md files by their ID
-const currentFolderSlugForChildren = (entry.data as any).slug; // Use entry.data.slug for the folder's slug
+const isFolderIndex = isFolderIndexEntry(entry);
+let childContent: ContentPanelProps[] = [];
 
-let childContent: ContentPanelProps[] = []; // Changed type to ContentPanelProps[]
 if (isFolderIndex) {
   const allDocs = await getCollection('docs');
-  childContent = allDocs.filter((childEntry: CollectionEntry<'docs'>) => { // Explicitly type childEntry
-    // Simplified filter: Check if it's a direct child and not the index itself
-    const isDirectChild = childEntry.id.startsWith(currentFolderSlugForChildren + '/') && // Use currentFolderSlugForChildren
-                          childEntry.id.split('/').length === currentFolderSlugForChildren.split('/').length + 1; // Changed to +1
-    const isNotSelf = childEntry.id !== entry.id; // Exclude self
-    return isDirectChild && isNotSelf; // Simplified: removed isNotSelfOrNestedIndex
-  }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => { // Corrected map parameter typing
-    const isChildFolder = childEntry.id.endsWith('/_index');
-    const childHref = isChildFolder
-      ? `/${(childEntry.data as any).slug.replace('/_index', '')}/` // Cast to any for slug access
-      : `/${(childEntry.data as any).slug}`; // Cast to any for slug access
-
-    return {
-      title: childEntry.data.title as string,
-      summary: (childEntry.data.summary ?? '') as string,
-      mainImage: childEntry.data.mainImage as string | undefined,
-      href: childHref,
-      excerpt: getFirstNWords(childEntry.body, 50),
-    };
-  });
+  childContent = getDirectChildren(entry, allDocs);
 }
 ---
 
@@ -70,7 +40,7 @@ if (isFolderIndex) {
       <section class="mt-8">
         <h2 class="text-2xl font-bold mb-4">Contents in this section:</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {childContent.map((item) => (
+          {childContent.map((item: ContentPanelProps) => ( // Explicitly type item
             <ContentPanel
               title={item.title}
               summary={item.summary}

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev &",
+    "dev": "node --inspect node_modules/astro/astro.js dev",
     "kill": "pkill -f astro",
     "restart": "npm run kill && npm run dev:log",
     "build": "astro build",
