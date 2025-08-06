@@ -9,9 +9,9 @@ export async function getStaticPaths() {
   const allDocs = await getCollection('docs');
 
   return allDocs
-    .filter(entry => (entry.data as any).slug && (entry.data as any).slug.length > 0)
+    .filter(entry => entry.data.slug && entry.data.slug.length > 0)
     .map((entry) => ({
-      params: { slug: (entry.data as any).slug },
+      params: { slug: entry.data.slug },
       props: { entry },
     }));
 }

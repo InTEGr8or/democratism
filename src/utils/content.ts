@@ -68,8 +68,8 @@ export function getDirectChildren(parentEntry: CollectionEntry<'docs'>, allDocs:
   }).map((childEntry: CollectionEntry<'docs'>): ContentPanelProps => {
     const isChildFolder = isFolderIndexEntry(childEntry);
     const childHref = isChildFolder
-      ? `/${(childEntry.data as any).slug.replace('/_index', '')}/`
-      : `/${(childEntry.data as any).slug}`;
+      ? `/${childEntry.data.slug.replace('/_index', '')}/`
+      : `/${childEntry.data.slug}`;
 
     return {
       title: childEntry.data.title as string,

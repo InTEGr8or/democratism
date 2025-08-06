@@ -4,7 +4,10 @@ This plan outlines the steps to implement a grid layout for content panels, supp
 
 #### Future Enhancements and Architectural Considerations
 
-1.  **Explicit Type for `entry.data.slug`:** While `(entry.data as any).slug` works, it's generally better to have explicit types. If `slug` is always expected to be a string, ensuring it's typed as `z.string()` in `src/content.config.ts` is good. If possible, removing the `as any` cast would improve type safety.
+1.  **Explicit Type for `entry.data.slug` (Completed):** The `slug` is now explicitly typed as `z.string()` in `src/content.config.ts`. All `as any` casts related to `entry.data.slug` have been removed from `src/utils/content.ts` and `src/pages/[...slug].astro`. A slug generation script (`scripts/enrich-slugs.ts`) has been implemented and run to ensure all content files have a URL-safe slug in their frontmatter.
+    1.  Slug generation and content enrichment process implemented.
+    2.  Additional article enrichments (like summaries) will be considered later.
+    3.  `slug` added to explicit type and validated by testing.
 
 2.  **Handling Folders Without `_index` Files:** The current structure primarily relies on `_index` files to represent folders that display child content. If a folder exists without an `_index` file, it won't have a dedicated page to list its children.
     *   **Improvement:** Consider a strategy for folders without `_index` files. This could involve:

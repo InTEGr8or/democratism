@@ -1,12 +1,16 @@
 ---
-title: "Why Democratism?"
-date: 2024-12-30T10:30:00-08:00
+title: Why Democratism?
+date: 2024-12-30T18:30:00.000Z
 draft: false
-summary: ""
-tags: ["politics", "democracy", "democratism"]
-categories: ["politics"]
-slug: ""
-amazonLink: "https://www.amazon.com/Ideology-Democratism-Emily-B-Finley/dp/0197642292/"
+summary: ''
+tags:
+  - politics
+  - democracy
+  - democratism
+categories:
+  - politics
+slug: ''
+amazonLink: 'https://www.amazon.com/Ideology-Democratism-Emily-B-Finley/dp/0197642292/'
 ---
 
 ## Introduction
