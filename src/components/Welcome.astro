@@ -20,190 +20,190 @@ import background from '../assets/background.svg';
 						><path
 							fill="currentColor"
 							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
-
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
-	</a>
-</div>
-
-<style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
-
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
-
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
-
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
-
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
-
-	#links {
-		display: flex;
-		gap: 16px;
-	}
-
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
-
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
-
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
-
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
-
-	pre {
-		font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
-			'DejaVu Sans Mono', monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
-	}
-</style>
+ 23 | 						></path></svg
+ 24 | 					>
+ 25 | 				</a>
+ 26 | 			</section>
+ 27 | 		</section>
+ 28 | 	</main>
+ 29 |
+ 30 | 	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
+ 31 | 		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
+ 32 | 			><path
+ 33 | 				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
+ 34 | 				fill="#111827"></path></svg
+ 35 | 		>
+ 36 | 		<h2>What's New in Astro 5.0?</h2>
+ 37 | 		<p>
+ 38 | 			From content layers to server islands, click to learn more about the new features and
+ 39 | 			improvements in Astro 5.0
+ 40 | 		</p>
+ 41 | 	</a>
+ 42 | </div>
+ 43 |
+ 44 | <style>
+ 45 | 	#background {
+ 46 | 		position: fixed;
+ 47 | 		top: 0;
+ 48 | 		left: 0;
+ 49 | 		width: 100%;
+ 50 | 		height: 100%;
+ 51 | 		z-index: -1;
+ 52 | 		filter: blur(100px);
+ 53 | 	}
+ 54 |
+ 55 | 	#container {
+ 56 | 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+ 57 | 		height: 100%;
+ 58 | 	}
+ 59 |
+ 60 | 	main {
+ 61 | 		height: 100%;
+ 62 | 		display: flex;
+ 63 | 		justify-content: center;
+ 64 | 	}
+ 65 |
+ 66 | 	#hero {
+ 67 | 		display: flex;
+ 68 | 		align-items: start;
+ 69 | 		flex-direction: column;
+ 70 | 		justify-content: center;
+ 71 | 		padding: 16px;
+ 72 | 	}
+ 73 |
+ 74 | 	h1 {
+ 75 | 		font-size: 22px;
+ 76 | 		margin-top: 0.25em;
+ 77 | 	}
+ 78 |
+ 79 | 	#links {
+ 80 | 		display: flex;
+ 81 | 		gap: 16px;
+ 82 | 	}
+ 83 |
+ 84 | 	#links a {
+ 85 | 		display: flex;
+ 86 | 		align-items: center;
+ 87 | 		padding: 10px 12px;
+ 88 | 		color: #111827;
+ 89 | 		text-decoration: none;
+ 90 | 		transition: color 0.2s;
+ 91 | 	}
+ 92 |
+ 93 | 	#links a:hover {
+ 94 | 		color: rgb(78, 80, 86);
+ 95 | 	}
+ 96 |
+ 97 | 	#links a svg {
+ 98 | 		height: 1em;
+ 99 | 		margin-left: 8px;
+100 | 	}
+101 |
+102 | 	#links a.button {
+103 | 		color: white;
+104 | 		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+105 | 		box-shadow:
+106 | 			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+107 | 			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
+108 | 		border-radius: 10px;
+109 | 	}
+110 |
+111 | 	#links a.button:hover {
+112 | 		color: rgb(230, 230, 230);
+113 | 		box-shadow: none;
+114 | 	}
+115 |
+116 | 	pre {
+117 | 		font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+118 | 			'DejaVu Sans Mono', monospace;
+119 | 		font-weight: normal;
+120 | 		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
+121 | 		-webkit-background-clip: text;
+122 | 		-webkit-text-fill-color: transparent;
+123 | 		background-clip: text;
+124 | 		margin: 0;
+125 | 	}
+126 |
+127 | 	h2 {
+128 | 		margin: 0 0 1em;
+129 | 		font-weight: normal;
+130 | 		color: #111827;
+131 | 		font-size: 20px;
+132 | 	}
+133 |
+134 | 	p {
+135 | 		color: #4b5563;
+136 | 		font-size: 16px;
+137 | 		line-height: 24px;
+138 | 		letter-spacing: -0.006em;
+139 | 		margin: 0;
+140 | 	}
+141 |
+142 | 	code {
+143 | 		display: inline-block;
+144 | 		background:
+145 | 			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
+146 | 			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
+147 | 		border-radius: 8px;
+148 | 		border: 1px solid transparent;
+149 | 		padding: 6px 8px;
+150 | 	}
+151 |
+152 | 	.box {
+153 | 		padding: 16px;
+154 | 		background: rgba(255, 255, 255, 1);
+155 | 		border-radius: 16px;
+156 | 		border: 1px solid white;
+157 | 	}
+158 |
+159 | 	#news {
+160 | 		position: absolute;
+161 | 		bottom: 16px;
+162 | 		right: 16px;
+163 | 		max-width: 300px;
+164 | 		text-decoration: none;
+165 | 		transition: background 0.2s;
+166 | 		backdrop-filter: blur(50px);
+167 | 	}
+168 |
+169 | 	#news:hover {
+170 | 		background: rgba(255, 255, 255, 0.55);
+171 | 	}
+172 |
+173 | 	@media screen and (max-height: 368px) {
+174 | 		#news {
+175 | 			display: none;
+176 | 		}
+177 | 	}
+178 |
+179 | 	@media screen and (max-width: 768px) {
+180 | 		#container {
+181 | 			display: flex;
+182 | 			flex-direction: column;
+183 | 		}
+184 |
+185 | 		#hero {
+186 | 			display: block;
+187 | 			padding-top: 10%;
+188 | 		}
+189 |
+190 | 		#links {
+191 | 			flex-wrap: wrap;
+192 | 		}
+193 |
+194 | 		#links a.button {
+195 | 			padding: 14px 18px;
+196 | 		}
+197 |
+198 | 		#news {
+199 | 			right: 16px;
+200 | 			left: 16px;
+201 | 			bottom: 2.5rem;
+202 | 			max-width: 100%;
+203 | 		}
+204 |
+205 | 		h1 {
+206 | 			line-height: 1.5;
+207 | 		}
+208 | 	}
+209 | </style>

@@ -18,11 +18,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   integrations: [
     mdx(),
-    react(),
-    tailwind(),
-    partytown(),
-    sentry(),
-    spotlightjs(),
-    sitemap()
+    // react(),
+    // tailwind(),
+    // partytown(),
+    // sentry(),
+    // spotlightjs(),
+    // sitemap()
   ]
 });

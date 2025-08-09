@@ -57,6 +57,7 @@ const topLevelContent = allDocs.filter((entry: CollectionEntry<'docs'>) => { // 
 ---
 
 <Layout content={{ title: rootIndex.data.title }}> {/* Changed title prop to content prop */}
+  <h1 class="main">{rootIndex.data.title}</h1>
   {rootIndex && rootIndex.rendered && rootIndex.rendered.html && (
     <Fragment set:html={rootIndex.rendered.html} />
   )}

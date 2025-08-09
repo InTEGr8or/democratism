@@ -11,30 +11,36 @@ img.hero {
   margin-right: 60%;
   padding-bottom: 1.2em;
 }
-
-form#signup {
-  input {
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  button {
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 300px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-  }
+img.home {
+  float: left;
+  width: 15%;
+  margin: 0;
+  padding: 0.1em 1em 1em 0.1em;
 }
+
+form#signup input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form#signup button {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 stripe-buy-button {
   margin-top: 10px;
   align-self: center;
@@ -52,6 +58,11 @@ stripe-buy-button {
 
 body {
   font-family: sans-serif;
+  margin: 0 8px 0 8px;
+}
+
+a {
+  text-decoration: none;
 }
 
 h1,
@@ -69,6 +80,12 @@ h1 {
   line-height: 2.5rem; /* 40px */
 }
 
+h1.main {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+
 h2 {
   font-size: 1.875rem; /* 30px */
   line-height: 2.25rem; /* 36px */
@@ -77,4 +94,8 @@ h2 {
 h3 {
   font-size: 1.5rem; /* 24px */
   line-height: 2rem; /* 32px */
+}
+html.dark h1 {
+  color: goldenrod;
+  font-family: monospace;
 }

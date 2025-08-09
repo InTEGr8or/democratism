@@ -19,21 +19,23 @@ const { title, description } = content; // Removed unused pubDate, updatedDate, 
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <Head title={title} description={description} /> {/* Pass title and description to Head */}
-  <body>
+  <body class="dark:bg-black">
     <GtmBody />
     <div class="px-4 md:px-8 lg:px-16">
       <Header />
     </div>
     <div class="px-4 md:px-8 lg:px-16">
-      <slot />
+      <div class="prose lg:prose-xl dark:prose-invert max-w-full md:columns-2">
+        <slot />
+      </div>
     </div>
     <div class="flex flex-col items-center mt-16">
       <h3 class="text-2xl font-bold">
         Find out what's coming next
       </h3>
-      <StripeBuyButton />
+      <StripeBuyButton client:load />
     </div>
   </body>
 </html>
