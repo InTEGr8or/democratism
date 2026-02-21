@@ -3,6 +3,7 @@ import Head from "../components/Head.astro";
 import GtmBody from "../components/GtmBody.astro";
 import Header from "../components/Header.astro";
 import StripeBuyButton from "../components/StripeBuyButton.astro";
+import DarkModeToggle from "../components/DarkModeToggle.astro"; // Import DarkModeToggle
 import "../styles/global.css";
 
 interface Props {
@@ -19,15 +20,16 @@ const { title, description } = content; // Removed unused pubDate, updatedDate, 
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <Head title={title} description={description} /> {/* Pass title and description to Head */}
-  <body class="dark:bg-black">
+  <body class="dark:bg-black text-gray-900 dark:text-white"> {/* Added default text color for dark mode */}
     <GtmBody />
-    <div class="px-4 md:px-8 lg:px-16">
+    <div class="px-4 md:px-8 lg:px-16 flex justify-between items-center"> {/* Added flexbox for header layout */}
       <Header />
-    </div>
+      <DarkModeToggle class="z-50" />
+    </div> {/* Fixed position for toggle */}
     <div class="px-4 md:px-8 lg:px-16">
-      <div class="prose lg:prose-xl dark:prose-invert max-w-full md:columns-2">
+      <div class="prose lg:prose-xl dark:prose-invert max-w-full sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
         <slot />
       </div>
     </div>

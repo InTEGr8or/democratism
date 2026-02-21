@@ -1,0 +1,52 @@
+---
+---
+
+<button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-200 dark:bg-gray-700">
+  <svg id="moon-icon" class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9 9 0 008.354-5.646z"></path>
+  </svg>
+  <svg id="sun-icon" class="w-6 h-6 text-gray-800 dark:text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325 5.325l-.707.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+  </svg>
+</button>
+
+<script is:inline>
+  const themeToggle = document.getElementById('theme-toggle');
+  const htmlElement = document.documentElement;
+  const moonIcon = document.getElementById('moon-icon');
+  const sunIcon = document.getElementById('sun-icon');
+
+  // Function to set the theme
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      htmlElement.classList.add('dark');
+      moonIcon.classList.add('hidden');
+      sunIcon.classList.remove('hidden');
+    } else {
+      htmlElement.classList.remove('dark');
+      moonIcon.classList.remove('hidden');
+      sunIcon.classList.add('hidden');
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  // Check for saved theme preference on load
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // If no saved theme, check system preference
+    setTheme('dark');
+  } else {
+    setTheme('light'); // Default to light if no preference
+  }
+
+  // Toggle theme on button click
+  themeToggle.addEventListener('click', () => {
+    if (htmlElement.classList.contains('dark')) {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
+  });
+</script>
